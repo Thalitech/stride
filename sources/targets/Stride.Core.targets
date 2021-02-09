@@ -83,9 +83,6 @@
   <PropertyGroup>
     <!-- On Android, everything is library (even Exe) -->
     <OutputType Condition=" '$(StridePlatform)' == 'Android' ">Library</OutputType>
-
-    <OutputPath Condition="'$(StrideProjectType)' == 'Cpp'">$(OutDir)</OutputPath>
-    <IntermediateOutputPath Condition="'$(StrideProjectType)' == 'Cpp'">$(IntDir)</IntermediateOutputPath>
   </PropertyGroup>
 
   <!-- User Documentation (.usrdoc) -->
@@ -120,7 +117,13 @@
     <StrideAssemblyProcessorTempBasePath Condition="'$(StrideAssemblyProcessorBasePath)' != ''">$(TEMP)\Stride\AssemblyProcessor\$(StrideAssemblyProcessorHash)\$(StrideAssemblyProcessorFramework)\</StrideAssemblyProcessorTempBasePath>
     <StrideAssemblyProcessorTempPath Condition="'$(StrideAssemblyProcessorBasePath)' != ''">$(StrideAssemblyProcessorTempBasePath)Stride.Core.AssemblyProcessor.Packed$(StrideAssemblyProcessorExt)</StrideAssemblyProcessorTempPath>
   </PropertyGroup>
-  
+
+  <!-- Setup default output path for C++ projects -->
+  <PropertyGroup>
+    <OutputPath Condition="'$(StrideProjectType)' == 'Cpp'">$(OutDir)</OutputPath>
+    <IntermediateOutputPath Condition="'$(StrideProjectType)' == 'Cpp'">$(IntDir)</IntermediateOutputPath>
+  </PropertyGroup>
+
   <!-- C++ doesn't auto-import language targets -->
   <Import Condition="'$(StrideProjectType)' == 'Cpp' And '$(StrideCompilerTargetsEnable)' != 'false'" Project="$(MSBuildThisFileDirectory)Stride.Core.Cpp.targets" />
 
@@ -236,5 +239,6 @@
       </BuildOutputInPackage>
     </ItemGroup>    
   </Target>
-  <Import Project="$(MSBuildThisFileDirectory)Stride.Core.RuntimeIdentifier.ProjectReference.targets" />
+
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" Condition="'$(StrideProjectType)' != 'Cpp'" />
 </Project>
