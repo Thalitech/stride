@@ -240,5 +240,8 @@
     </ItemGroup>    
   </Target>
 
+  <Import Project="$(MSBuildThisFileDirectory)MSBuild.Sdk.Extras\Inference.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)MSBuild.Sdk.Extras\Platforms.targets" />
+
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" Condition="'$(StrideProjectType)' != 'Cpp'" />
 </Project>
