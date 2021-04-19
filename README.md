@@ -64,7 +64,7 @@ Ask for help or report issues:
 
 1. Install VS build tools with the same prerequisites listed above
 2. Add MSBuild's directory to your system's *PATH*
-3. Open a command prompt, point it to a directory and clone Stride to it: `git clone https://github.com/stride3d/stride.git`
+3. Open a command prompt, point it to a directory and clone Stride to it: `git clone https://github.com/thalitech/stride.git`
 4. Navigate to `/Build` with the command prompt, input `dotnet restore Stride.sln` then `compile`
 
 For .Net 5.0 make sure that you have the latest SDK and runtime, navigate to `\sources\targets\Stride.Core.TargetFrameworks.Editor.props` and change `net472` to `net5.0-windows`
